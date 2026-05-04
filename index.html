@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sipesa - Tarjeta de Contacto</title>
+    <!-- Fuente Montserrat para un diseño pulido -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos profesionales -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Paleta de colores basada en SIPESA */
+        :root {
+            --sipesa-yellow: #facc15; /* Amarillo de la grúa */
+            --sipesa-black: #111827;
+            --whatsapp-green: #25d366;
+            --bg-page: #e5e7eb;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-page);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Estructura de la tarjeta con sombra suave */
+        .vcard {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 380px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+            /* Animación al cargar */
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cabecera oscura */
+        .header-bg {
+            background: linear-gradient(135deg, var(--sipesa-black) 0%, #374151 100%);
+            height: 130px;
+            position: relative;
+        }
+
+        /* Curva inferior de la cabecera */
+        .header-bg::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: var(--card-bg);
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+        }
+
+        /* Contenedor del Logo Flotante */
+        .brand-logo {
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            z-index: 2;
+            width: 90px;
+            height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 4px solid white;
+        }
+
+        .brand-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .content {
+            padding: 50px 24px 30px;
+            text-align: center;
+        }
+
+        .profile h1 {
+            font-size: 1.25rem;
+            color: var(--sipesa-black);
+            margin: 0 0 5px;
+            font-weight: 700;
+        }
+
+        .profile h2 {
+            font-size: 0.85rem;
+            color: #d97706; /* Un tono oscuro del amarillo para lectura */
+            margin: 0 0 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* Lista de detalles de contacto (Estilo moderno) */
+        .info-list {
+            text-align: left;
+            margin-bottom: 25px;
+            padding: 10px 15px;
+            background: #f9fafb;
+            border-radius: 16px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+            text-decoration: none;
+            color: var(--sipesa-black);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .info-item:last-child { border-bottom: none; }
+        .info-item:hover { color: #d97706; transform: translateX(5px); }
+
+        .icon-box {
+            width: 35px;
+            height: 35px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            color: var(--sipesa-black);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
+
+        /* Botones interactivos */
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .btn i { margin-right: 8px; font-size: 1.1rem; }
+
+        .btn-primary {
+            background: var(--sipesa-black);
+            color: white;
+            border: 2px solid var(--sipesa-black);
+        }
+        .btn-primary:hover { background: transparent; color: var(--sipesa-black); }
+
+        .btn-whatsapp {
+            background: var(--whatsapp-green);
+            color: white;
+            box-shadow: 0 8px 15px rgba(37, 211, 102, 0.2);
+        }
+        .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 12px 20px rgba(37, 211, 102, 0.3); }
+
+        .btn-outline {
+            border: 2px solid #e5e7eb;
+            color: var(--sipesa-black);
+            background: transparent;
+        }
+        .btn-outline:hover { border-color: var(--sipesa-black); }
+
+        /* QR Integrado de forma sutil abajo */
+        .qr-wrapper {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px dashed #d1d5db;
+        }
+        .qr-wrapper p {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin: 0 0 10px 0;
+            font-weight: 500;
+        }
+        .qr-wrapper img {
+            width: 110px;
+            border-radius: 12px;
+            padding: 6px;
+            background: white;
+            border: 1px solid #e5e7eb;
+            transition: transform 0.3s;
+        }
+        .qr-wrapper img:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body>
+
+    <div class="vcard">
+        <!-- Parte superior negra -->
+        <div class="header-bg"></div>
+
+        <!-- Círculo flotante para el logo -->
+        <div class="brand-logo">
+            <!-- AQUÍ VA EL LOGO: Asegúrate de subir logo.png a GitHub Pages -->
+            <!-- Si no encuentra el logo, mostrará una S amarilla provisional -->
+            <img src="logo.png" alt="SIPESA" onerror="this.src='https://ui-avatars.com/api/?name=Sipesa&background=facc15&color=111827&bold=true&font-size=0.4'">
+        </div>
+
+        <div class="content">
+            <!-- Datos Personales -->
+            <div class="profile">
+                <h1>Ing. Rafael E. Peña Mendoza</h1>
+                <h2>Coordinador Operaciones Costa</h2>
+            </div>
+
+            <!-- Listado de datos con iconos separados -->
+            <div class="info-list">
+                <a href="tel:+573008084304" class="info-item">
+                    <div class="icon-box"><i class="fas fa-phone-alt"></i></div>
+                    <span>+57 300 808 4304</span>
+                </a>
+                <a href="mailto:operaciones.caribe@sipesa.co" class="info-item">
+                    <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                    <span>operaciones.caribe@sipesa.co</span>
+                </a>
+                <div class="info-item" style="cursor: default;">
+                    <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
+                    <span style="font-size: 0.85rem; line-height: 1.4;">Cra 56 No 1-99, Km 2 Vía Mamonal<br>Cartagena, Bolívar</span>
+                </div>
+            </div>
+
+            <!-- Botones de Acción (El core de la interacción) -->
+            <a href="contacto.vcf" class="btn btn-primary">
+                <i class="fas fa-user-plus"></i> Guardar Contacto
+            </a>
+            
+            <a href="https://wa.me/573008084304?text=Hola,%20solicito%20una%20cotización%20(Vía%20tarjeta%20digital)" target="_blank" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Cotizar por WhatsApp
+            </a>
+
+            <a href="https://www.sipesa.co" target="_blank" class="btn btn-outline">
+                <i class="fas fa-globe"></i> Ver Página Web
+            </a>
+
+            <!-- Mini QR en la parte inferior para escaneo en persona -->
+            <div class="qr-wrapper">
+                <p>Escanea para compartir</p>
+                <!-- Solo cambia AQUI_TU_LINK_DE_GITHUB por tu URL real de GitHub Pages cuando la tengas -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=AQUI_TU_LINK_DE_GITHUB" alt="Código QR">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
