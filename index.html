@@ -48,9 +48,16 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* Cabecera oscura */
+        /* Cabecera con imagen y degradado */
         .header-bg {
-            background: linear-gradient(135deg, var(--sipesa-black) 0%, #374151 100%);
+            background: 
+                /* 1. Un degradado negro traslúcido encima de la imagen */
+                linear-gradient(to bottom, rgba(17, 24, 39, 0.95) 0%, rgba(17, 24, 39, 0.1) 100%),
+                /* 2. La imagen de fondo */
+                url('https://framerusercontent.com/images/2x49OK0wSPZQ1HOCgskCmynlzFg.jpg?scale-down-to=512') no-repeat;
+            
+            background-size: cover; /* Para que la imagen cubra todo el espacio */
+            background-position: center; /* Para centrar la imagen */
             height: 130px;
             position: relative;
         }
